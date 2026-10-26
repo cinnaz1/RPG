@@ -108,9 +108,11 @@ public class Game extends JPanel  implements Runnable, KeyListener, MouseListene
  
         }
         private void drawStart(Graphics2D g2d){
-
+          g2d.setColor(Color.WHITE);
           for(Characters c : displayChars) {
               c.drawChar(g2d);
+              //this will display all of them
+              g2d.drawString("Range: " + c.getRange(), c.getX(), c.getY());
           }
         }
 
