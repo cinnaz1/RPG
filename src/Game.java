@@ -22,9 +22,6 @@ public class Game extends JPanel  implements Runnable, KeyListener, MouseListene
     private Queue<Enemies> enemyQueue;
 
    
-
-
-   
     public Game() {
        
         //This is the music
@@ -34,13 +31,13 @@ public class Game extends JPanel  implements Runnable, KeyListener, MouseListene
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
         new Thread(this).start();
-		displayChars = setupChars();
+		    displayChars = setupChars();
         enemies=setEs();
         for(Characters c : displayChars) {
 			System.out.println(c.toString());
     }
         level="start";
-		//only if you want to have a selected init 
+        //only if you want to have one selected init
 		mainChar = displayChars.get(0);
 		rangedAttack = new ArrayList<Weapons>();
 
@@ -48,19 +45,11 @@ public class Game extends JPanel  implements Runnable, KeyListener, MouseListene
 	public Queue<Enemies> setEs(){
 		Queue<Enemies> temp = new LinkedList<>();
 		// Initialize enemies here
-		temp.add(new Hayden(50,50));
-		temp.add(new Hayden(60,60));
-		temp.add(new Hayden(200,60));
-		temp.add(new Hayden(250,100));
-
+	
 
 		return temp;	
 
 	}
-
-
-
-
 
     public void setupChars() {
         // Initialize characters here
@@ -99,23 +88,35 @@ public class Game extends JPanel  implements Runnable, KeyListener, MouseListene
           case "start":
               drawStart(g2d);
              break;
+             case "stats":
+              drawStats(g2d);
+             break;
 
         }
 
         //do not delete this line, it draws everythign above
-        twoDgraph.drawImage(back,op:op: null, x:x:0, y:y:0);
+        int y;
+        twoDgraph.drawImage(back,op;op; null, x;x;0 y;y;0);
 
  
         }
         private void drawStart(Graphics2D g2d){
+          System.out.println("Drawing start");
           g2d.setColor(Color.WHITE);
           for(Characters c : displayChars) {
               c.drawChar(g2d);
               //this will display all of them
-              g2d.drawString("Range: " + c.getRange(), c.getX(), c.getY());
+              //g2d.drawString("Range:" + c.getRange(), c.getX(), c.getY() - 10);
           }
         }
-
+        private void drawStats(Graphics2D g2d){
+          mainChar.drawChar(g2d);
+          g2d.setColor(Color.WHITE);
+          g2d.drawString("Range:" + mainChar.getRange(), 100, 100);
+          g2d.drawString("Health:" + mainChar.getHealth(), 100, 120);
+          g2d.drawString("Damage:" + mainChar.getDamage(), 100, 140);
+          g2d.drawString("Speed:" + mainChar.getSpeed(), 100, 160);
+        }
     
       @Override
       public void mouseDragged(MouseEvent e) {
@@ -135,6 +136,10 @@ public class Game extends JPanel  implements Runnable, KeyListener, MouseListene
       public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
         //throw new UnsupportedOperationException("Unimplemented method 'mouseClicked'");
+      
+        mainChar=//whichever character is clicked on displayChars.get(i);
+        level="stats";
+
       }
 
 
