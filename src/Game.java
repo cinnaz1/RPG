@@ -8,13 +8,14 @@ import java.util.LinkedList;
 
 
 
-
-
-
 public class Game extends JPanel  implements Runnable, KeyListener, MouseListener, MouseMotionListener{
    
    
     private BufferedImage back;
+    private ArrayList<Characters> displayChars;
+    private Queue<Enemies> enemies;
+    private int x, y;
+    private int w, h;
     private ArrayList<Characters> characters;
     private String level;
     private Characters mainChar;
@@ -32,8 +33,8 @@ public class Game extends JPanel  implements Runnable, KeyListener, MouseListene
         this.addMouseMotionListener(this);
         new Thread(this).start();
 		    displayChars = setupChars();
-        enemies=setEs();
-        for(Characters c : displayChars) {
+        enemyQueue=setEs();
+        for(Characters c : (displayChars)) {
 			System.out.println(c.toString());
     }
         level="start";
@@ -51,8 +52,10 @@ public class Game extends JPanel  implements Runnable, KeyListener, MouseListene
 
 	}
 
-    public void setupChars() {
+    public ArrayList<Characters> setupChars() {
+        ArrayList<Characters> temp = new ArrayList<>();
         // Initialize characters here
+        return temp;  
     }
     public void setupGame() {
         characters = new ArrayList<>();
@@ -103,7 +106,7 @@ public class Game extends JPanel  implements Runnable, KeyListener, MouseListene
         private void drawStart(Graphics2D g2d){
           System.out.println("Drawing start");
           g2d.setColor(Color.WHITE);
-          for(Characters c : displayChars) {
+          for(Characters c : (displayChars)) {
               c.drawChar(g2d);
               //this will display all of them
               //g2d.drawString("Range:" + c.getRange(), c.getX(), c.getY() - 10);

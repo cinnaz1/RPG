@@ -5,7 +5,7 @@ public class Weapons{
 
     private int damage;
     private int attackSpeed;
-    private ImageIcon pic, movePic;
+    private ImageIcon pic;
     private int x, y, w, h;
 
 
@@ -20,7 +20,9 @@ public class Weapons{
 
 
     }
-
+    public String toString(){
+        return "Damage: " + damage + " Attack Speed: " + attackSpeed;
+    }
     public Weapons(int damage, int attackSpeed, ImageIcon pic) {
         this.damage = damage;
         this.attackSpeed = attackSpeed;
@@ -53,11 +55,7 @@ public class Weapons{
     }
 
     public void drawMove(Graphics g2d) {
-        g2d.drawImage(movePic.getImage(), x, y, w, h, null);
-    }
-
-    public String toString(){
-        return "Damage: " + damage + " Attack Speed: " + attackSpeed;
+        g2d.drawImage(pic.getImage(), x, y, w, h, null);
     }
 
     public int getDamage() {
